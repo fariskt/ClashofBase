@@ -1,0 +1,40 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(34, 32, 32, 0.9);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+ul {
+  display: flex;
+  justify-content: space-between;
+}
+ul a {
+  margin-right: 30px;
+  margin-top: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+.navbar sup {
+  display: inline-block;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  background-color: blue;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  
+}

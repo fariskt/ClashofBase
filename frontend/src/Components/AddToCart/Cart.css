@@ -1,0 +1,143 @@
+.cart-container {
+  background-color: white;
+  min-height: 91vh;
+  width: 100%;
+  height: auto;
+  padding-bottom: 40px;
+}
+
+.cart-image-container {
+  padding: 10px 20px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+.cart-image-container img {
+  height: 200px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.container-section {
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+.categories {
+  margin-top: 20px;
+}
+.copy-link {
+  display: flex;
+  flex-direction: column;
+}
+.copy-link .copy-btn {
+  height: 40px;
+  margin-top: 40px;
+  width: 100px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 14px;
+  border: none;
+  background-color: rgb(62, 59, 224);
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgb(176, 176, 236);
+}
+.cart-items {
+  display: flex;
+  gap: 10px;
+  border: 1px solid gray;
+  padding: 20px;
+  width: 800px;
+  background-color: rgba(197, 191, 186 , 0.6);
+  border-radius: 10px;
+}
+
+.delete-btn {
+  height: 40px;
+  width: 100px;
+  color: white;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 14px;
+  border: none;
+  background-color: rgb(232, 133, 41);
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgb(176, 176, 236);
+}
+.clear-cart {
+  display: flex;
+  justify-content: center;
+}
+.clear-cart button {
+  height: 40px;
+  width: 100px;
+  color: white;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  background-color: rgb(191, 53, 15);
+  cursor: pointer;
+  box-shadow: 4px 4px 8px rgb(176, 176, 236);
+}
+
+@media (max-width: 768px) {
+  .cart-image-container img {
+    height: 290px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 370px;
+    object-fit: cover;
+  }
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid gray;
+    padding: 20px;
+    width: 100%;
+    border-radius: 4px;
+  }
+  .cart-container {
+    background-color: white;
+    min-height: 100vh;
+    width: 100%;
+    height: auto;
+    padding-bottom: 40px;
+  }
+  .categories {
+    margin-top: 0px;
+  }
+  .copy-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+ 
+  }
+  .copy-link .copy-btn {
+    height: 40px;
+    margin-top: 20px;
+    width: 80px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 10px;
+  }
+
+  .delete-btn {
+   position: absolute;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 30px;
+    margin-top: -110px;
+    right: 30px;
+  }
+}

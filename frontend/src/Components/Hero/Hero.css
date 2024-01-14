@@ -1,0 +1,96 @@
+.hero-container {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(245, 239, 239, 0.6);
+}
+.hero {
+  padding: 10px;
+  margin-top: 40px;
+}
+.lists {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 18px;
+  justify-content: center;
+}
+.villages {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 15px;
+  margin-right: 20px;
+}
+.btn {
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 2px;
+  cursor: pointer;
+}
+button.active {
+  background-color: orange;
+}
+
+.img-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.img-container img {
+  margin: 10px;
+  height: 220px;
+  width: 220px;
+  background-color: rgba(245, 239, 239, 0.7);
+  border-radius: 10px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.img-container img:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+figcaption {
+  text-align: center;
+  color: rgb(10, 10, 10);
+  font-weight: 600;
+  font-family: system-ui, sans-serif;
+}
+
+@media (max-width:768px){
+  .hero-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    background-color: rgba(245, 239, 239, 0.6);
+  }
+  .villages{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+  }
+  .img-container {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 500px;
+  }
+  .hero-title{
+    text-align: center;
+  }
+  .img-container img {
+    margin: 10px;
+    height: 150px;
+    width: 150px;
+    background-color: rgba(245, 239, 239, 0.7);
+    border-radius: 10px;
+    object-fit: contain;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+}

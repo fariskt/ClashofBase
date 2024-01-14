@@ -1,0 +1,12 @@
+
+
+body{
+    height: auto;
+    background-image: url("./data/hero-bg.jpg");
+    background-size: 100%;
+    backdrop-filter: blur(5px);
+    
+}
+.App{
+    margin: 0;
+}
