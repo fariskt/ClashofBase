@@ -1,15 +1,13 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./UploadBase.css";
 import Alert from "../Alert/Alert";
 import Form from "./Form";
 
-
 const UploadForm = () => {
-  
   const [formData, setFormData] = useState({
     id: 0,
     category: "",
-    img: null,
+    img: "",
     link: "",
     type: "",
     author: "",
@@ -52,26 +50,32 @@ const UploadForm = () => {
     e.preventDefault();
 
     try {
-      setLoading(true)
+      setLoading(true);
       const formDataToSend = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         formDataToSend.append(key, value);
       });
 
-      const response = await fetch(
-        "https://clashof-base-api.vercel.app/api/layout",
-        {
-          method: "POST",
-          body: formDataToSend,
-        }
-      );
+      const response = await fetch("https://clashof-base-api.vercel.app/api/layout", {
+        method: "POST",
+        body: formDataToSend,
+      });
       setCurrentId((prevId) => prevId + 1);
       if (response.ok) {
         setAlertShow(true);
-        setLoading(false)
+        setLoading(false);
         setTimeout(() => {
           setAlertShow(null);
         }, 5000);
+        setFormData({
+          id: 0,
+          category: "",
+          img: "",
+          link: "",
+          type: "",
+          author: "",
+        });
+        setImageSrc("");
         console.log("Layout data uploaded successfully");
       } else {
         setAlertShow(false);

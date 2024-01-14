@@ -8,6 +8,7 @@ const Form = ({
   handleChange,
   imageSrc,
   alertShow,
+  handleDeleteImage
 }) => {
   return (
     <div>
@@ -66,7 +67,7 @@ const Form = ({
           <p>Upload Base Image </p>
           {imageSrc && (
             <AiFillDelete
-              onClick={() => handleDeleteImage(index)}
+              onClick={handleDeleteImage}
               className="delete-img"
             />
           )}
