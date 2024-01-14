@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Hero.css";
-import Townhall from "./Halls/Townhall";
-import Builderhall from "./Halls/Builderhall";
+import Townhall from "../Halls/Townhall";
+import Builderhall from "../Halls/Builderhall";
 
 const Hero = () => {
   const [showTh, setShowTh] = useState(true);

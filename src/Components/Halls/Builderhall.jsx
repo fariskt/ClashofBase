@@ -1,6 +1,6 @@
 import React from "react";
-import "../Hero.css";
-import { builderhall } from "../../../data/data";
+import "../Hero/Hero.css";
+import { builderhall } from "../../data/data";
 
 const Builderhall = () => {
   return (

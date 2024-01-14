@@ -1,4 +1,4 @@
-import style from "../style.module.css";
+import style from "./style.module.css";
 import React, { useState } from "react";
 import css from "classnames";
 

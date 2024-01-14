@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import "../Hero.css";
+import "../Hero/Hero.css";
+import { townhall } from "../../data/data";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../../context/AppContext";
-import { townhall } from "../../../data/data";
-import Loading from "../../Loading/Loading";
+import { AppContext } from "../../context/AppContext";
+import Loading from "../Loading/Loading";
 
 const Townhall = () => {
   const { selectedThValue, handleThValueFilter, isLoading, handleTypeFilter } =
