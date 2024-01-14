@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./LayoutDetails.css";
 import { AppContext } from "../../context/AppContext";
 import { CartContext } from "../../context/CartContext";
-import { constructImageUrl } from "../../utils";
 
 function LayoutDetails() {
   const [counter, setCounter] = useState(0);
@@ -31,7 +30,7 @@ function LayoutDetails() {
         ""
       )}
       <div className="image-container">
-        <img src={constructImageUrl(image)} alt={`Base Image`} />
+        <img src={image} alt={`Base Image`} />
         <div className="details">
           <h3 className="reviews">
             Rate this base {""}

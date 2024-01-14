@@ -2,7 +2,6 @@ import { useContext } from "react";
 import "./Cart.css";
 import { CartContext } from "../../context/CartContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { constructImageUrl } from "../../utils";
 
 function AddToCart() {
   const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
@@ -16,7 +15,7 @@ function AddToCart() {
             {cartItems.map((item, index) => (
               <div className="cart-items" key={index}>
                 <div className="cart-image-container">
-                 <img src={constructImageUrl(item.img)} alt="" />
+                 <img src={item.img} alt="" />
                 </div>
                 <div className="categories">
                   <h4>Level : Townhall {item.category.slice(2)} </h4>

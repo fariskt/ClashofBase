@@ -23,7 +23,7 @@ export const AppProvider = ({ children }) => {
     const fetchData = async () => {
       try {
         
-        const response = await fetch("https://clashofbase-api.vercel.app/api/layout");
+        const response = await fetch("https://clashof-base-api.vercel.app/api/layout");
         const base = await response.json();
         setBase(base);
         setTimeout(() => {

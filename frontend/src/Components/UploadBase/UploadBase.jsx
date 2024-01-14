@@ -55,7 +55,7 @@ const UploadForm = () => {
       });
 
       const response = await fetch(
-        "https://clashofbase-api.vercel.app/api/layout",
+        "https://clashof-base-api.vercel.app/api/layout",
         {
           method: "POST",
           body: formDataToSend,

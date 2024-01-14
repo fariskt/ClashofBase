@@ -3,7 +3,6 @@ import { AppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { IoCartOutline } from "react-icons/io5";
-import { constructImageUrl } from "../../utils";
 
 const FilteredLayout = ({ setShow }) => {
   const { filteredLayouts, setClickedIndex } = useContext(AppContext);
@@ -39,7 +38,7 @@ const FilteredLayout = ({ setShow }) => {
         <div className="base-img" key={index}>
           <img
             onClick={() => handleBaseClick(index)}
-            src={constructImageUrl(layout.img)}
+            src={layout.img}
             alt={`Image ${layout.id}`}
           />
           <p className="name">{layout.author}</p>
