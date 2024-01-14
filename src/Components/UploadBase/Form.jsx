@@ -1,11 +1,13 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
+import { TailSpin } from "react-loader-spinner";
 
 const Form = ({
   handleSubmit,
   formData,
   handleChange,
-  imageSrc  
+  imageSrc,
+  alertShow,
 }) => {
   return (
     <div>
@@ -17,6 +19,7 @@ const Form = ({
             <input
               type="text"
               name="author"
+              required
               value={formData.author}
               placeholder="Enter Your Name"
               onChange={handleChange}
@@ -26,6 +29,7 @@ const Form = ({
           <p className="select-p">Select Townhall</p>
           <select
             name="category"
+            required
             value={formData.category}
             id=""
             onChange={handleChange}
@@ -47,6 +51,7 @@ const Form = ({
           <p className="select-p">Select Type</p>
           <select
             name="type"
+            required
             id=""
             value={formData.type}
             onChange={handleChange}
@@ -98,9 +103,17 @@ const Form = ({
           </label>
         </div>
 
-        <button className="submit-btn" type="submit">
-          Submit
-        </button>
+        <div className="submit-btn-container">
+          <button className="submit-btn" type="submit">
+            {alertShow ? (
+              <span id="spinner">
+                <TailSpin color={"#062DF6"} height="30" width="30" radius={2} />
+              </span>
+            ) : (
+              "Submit"
+            )}
+          </button>
+        </div>
       </form>
     </div>
   );

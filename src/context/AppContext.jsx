@@ -63,7 +63,6 @@ export const AppProvider = ({ children }) => {
       const result = base.filter(
         (layout) => layout.category === selectedThValue && layout.type === type
       );
-      console.log(result);
       const newFiltered = [...result];
       setFilteredLayouts(newFiltered);
     }

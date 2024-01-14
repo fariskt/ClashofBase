@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import "./UploadBase.css";
 import Alert from "../Alert/Alert";
 import Form from "./Form";
 
+
 const UploadForm = () => {
+  
   const [formData, setFormData] = useState({
     id: 0,
     category: "",
@@ -15,6 +17,7 @@ const UploadForm = () => {
 
   const [imageSrc, setImageSrc] = useState(null);
   const [alertShow, setAlertShow] = useState(null);
+  const [loading, setLoading] = useState(null);
   const [currentId, setCurrentId] = useState(0);
 
   useEffect(() => {
@@ -49,6 +52,7 @@ const UploadForm = () => {
     e.preventDefault();
 
     try {
+      setLoading(true)
       const formDataToSend = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         formDataToSend.append(key, value);
@@ -64,9 +68,10 @@ const UploadForm = () => {
       setCurrentId((prevId) => prevId + 1);
       if (response.ok) {
         setAlertShow(true);
+        setLoading(false)
         setTimeout(() => {
           setAlertShow(null);
-        }, 3000);
+        }, 5000);
         console.log("Layout data uploaded successfully");
       } else {
         setAlertShow(false);
@@ -100,6 +105,7 @@ const UploadForm = () => {
           handleDeleteImage={handleDeleteImage}
           imageSrc={imageSrc}
           handleChange={handleChange}
+          alertShow={loading}
         />
       </div>
       <div>

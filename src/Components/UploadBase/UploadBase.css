@@ -112,6 +112,11 @@ form p {
   margin-left: 10px;
   border-radius: 4px;
 }
+#spinner{
+  position: absolute;
+  margin-top: -15px;
+  margin-left: -20px;
+}
 
 @media (max-width: 768px) {
   form {
