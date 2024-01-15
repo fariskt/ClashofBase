@@ -21,28 +21,31 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   const addToCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
 
     if (isItemInCart) {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.id === item.id ? { ...cartItem, id: cartItem.id } : cartItem
+          cartItem._id === item._id ? { ...cartItem, _id: cartItem._id } : cartItem
         )
       );
+      console.log(cartItems);
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      console.log(cartItems);
+
     }
   };
-
+ 
   const removeFromCart = (item) => {
-    const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
+    const isItemInCart = cartItems.find((cartItem) => cartItem._id === item._id);
 
     if (isItemInCart) {
-      setCartItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
+      setCartItems(cartItems.filter((cartItem) => cartItem._id !== item._id));
     } else {
       setCartItems(
         cartItems.map((cartItem) =>
-          cartItem.id === item.id
+          cartItem._id === item._id
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
             : cartItem
         )
@@ -51,7 +54,7 @@ export const CartProvider = ({ children }) => {
   };
 
   let itemCount =
-    cartItems.length > 0 ? new Set(cartItems.map((item) => item.id)).size : 0;
+    cartItems.length > 0 ? new Set(cartItems.map((item) => item._id)).size : 0;
 
   const clearCart = () => {
     setCartItems([]);

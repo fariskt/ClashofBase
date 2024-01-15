@@ -31,7 +31,6 @@ const FilteredLayout = ({ setShow }) => {
     let shuffledData = data.sort(() => Math.random() - 0.5);
     setSelectedElements(shuffledData.slice(0, 4));
   }, []);
-
   return (
     <div className="base-container" onClick={() => setShow(false)}>
       {filteredLayouts.map((layout, index) => (
@@ -40,7 +39,7 @@ const FilteredLayout = ({ setShow }) => {
             onClick={() => handleBaseClick(index)}
             src={layout.img}
             alt={`Image ${layout.id}`}
-          />
+          /> 
           <p className="name">{layout.author}</p>
           <h5
             className={`${layout ? "add-cart" : "clicked"}`}

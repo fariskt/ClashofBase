@@ -5,7 +5,6 @@ import Form from "./Form";
 
 const UploadForm = () => {
   const [formData, setFormData] = useState({
-    id: 0,
     category: "",
     img: "",
     link: "",
@@ -16,18 +15,10 @@ const UploadForm = () => {
   const [imageSrc, setImageSrc] = useState(null);
   const [alertShow, setAlertShow] = useState(null);
   const [loading, setLoading] = useState(null);
-  const [currentId, setCurrentId] = useState(0);
 
-  useEffect(() => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      id: currentId,
-    }));
-  }, [currentId]);
 
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-
     if (type === "file") {
       const file = e.target.files[0];
       setFormData((prevData) => ({ ...prevData, [name]: file }));
@@ -38,7 +29,7 @@ const UploadForm = () => {
       };
       if (file) {
         reader.readAsDataURL(file);
-      } else {
+      } else if (file === null) {
         setImageSrc(null);
       }
     } else {
@@ -56,11 +47,10 @@ const UploadForm = () => {
         formDataToSend.append(key, value);
       });
 
-      const response = await fetch("https://clashof-base-api.vercel.app/api/layout", {
+      const response = await fetch("http://localhost:8000/api/layout", {
         method: "POST",
         body: formDataToSend,
       });
-      setCurrentId((prevId) => prevId + 1);
       if (response.ok) {
         setAlertShow(true);
         setLoading(false);
@@ -68,14 +58,13 @@ const UploadForm = () => {
           setAlertShow(null);
         }, 5000);
         setFormData({
-          id: 0,
           category: "",
           img: "",
           link: "",
           type: "",
           author: "",
         });
-        setImageSrc("");
+        setImageSrc(null);
         console.log("Layout data uploaded successfully");
       } else {
         setAlertShow(false);
@@ -92,7 +81,7 @@ const UploadForm = () => {
   const handleDeleteImage = () => {
     setFormData((prevData) => ({
       ...prevData,
-      img: null,
+      img: "",
     }));
     setImageSrc(null);
   };

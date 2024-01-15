@@ -108,7 +108,7 @@ const Form = ({
           <button className="submit-btn" type="submit">
             {alertShow ? (
               <span id="spinner">
-                <TailSpin color={"#062DF6"} height="30" width="30" radius={2} />
+                <TailSpin color="white" height="30" width="30" radius={2} />
               </span>
             ) : (
               "Submit"
