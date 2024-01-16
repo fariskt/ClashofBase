@@ -22,7 +22,7 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/layout");
+        const response = await fetch("https://clashof-base-api.vercel.app/api/layout");
         const base = await response.json();
         setBase(base);
         setTimeout(() => {
@@ -77,9 +77,6 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    handleTypeFilter("all");
-  }, [selectedThValue]);
 
   const contextValue = {
     selectedThValue,
@@ -96,6 +93,7 @@ export const AppProvider = ({ children }) => {
     handleTypeFilter,
     base,
     isLoading,
+    setIsLoading
   };
 
   return (

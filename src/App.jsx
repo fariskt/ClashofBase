@@ -8,6 +8,7 @@ import { AppProvider } from "./context/AppContext";
 import AddToCart from "./Components/AddToCart/Cart";
 import CartProvider from "./context/CartContext";
 import UploadBase from "./Components/UploadBase/UploadBase";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/upload" element={<UploadBase />} />
             <Route path="/header/layout" element={<LayoutDetails />} />
           </Routes>
+          <Footer/>
         </Router>
       </CartProvider>
     </AppProvider>

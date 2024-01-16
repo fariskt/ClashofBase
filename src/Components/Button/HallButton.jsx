@@ -4,12 +4,8 @@ import { IoIosArrowUp } from "react-icons/io";
 import { AppContext } from "../../context/AppContext";
 
 const HallButton = () => {
-  const {
-    selectedThValue,
-    handleThValueFilter,
-    base
-  } = useContext(AppContext)
-  
+  const { selectedThValue, handleThValueFilter } = useContext(AppContext);
+
   const [show, setShow] = useState(true);
 
   const handleSelect = () => {
@@ -29,11 +25,7 @@ const HallButton = () => {
     "th7",
     "th6",
   ];
-  let townHallValues = [...th]
-  
- 
-
- 
+  let townHallValues = [...th];
 
   return (
     <div className="select-th">
@@ -45,8 +37,9 @@ const HallButton = () => {
 
       <ul>
         {show &&
-          townHallValues.map((item , index) => (
-            <li key={index}
+          townHallValues.map((item, index) => (
+            <li
+              key={index}
               className={item === selectedThValue ? "active" : ""}
               onClick={() => handleThValueFilter(item)}
             >
@@ -59,5 +52,3 @@ const HallButton = () => {
 };
 
 export default HallButton;
-
-

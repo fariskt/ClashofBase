@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "../Hero/Hero.css";
 import { townhall } from "../../data/data";
 import { useNavigate } from "react-router-dom";
@@ -6,8 +6,12 @@ import { AppContext } from "../../context/AppContext";
 import Loading from "../Loading/Loading";
 
 const Townhall = () => {
-  const { selectedThValue, handleThValueFilter, isLoading, handleTypeFilter } =
-    useContext(AppContext);
+  const {
+    selectedThValue,
+    handleThValueFilter,
+    isLoading,
+    handleTypeFilter,
+  } = useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -15,25 +19,28 @@ const Townhall = () => {
     let path = `header`;
     navigate(path);
     handleThValueFilter(item);
-    handleTypeFilter("all")
+    handleTypeFilter("all");
 
     if (isLoading) {
       return <Loading />;
     }
   };
 
+
   return (
     <div className="img-container">
       {townhall.map((item, index) => (
-        <figure key={index}>
-          <img
-            src={item.image}
-            alt=""
-            className={item.level === selectedThValue ? "active" : ""}
-            onClick={() => navigateToHeader(item.level)}
-          />
-          <figcaption>{item.level.toUpperCase()}</figcaption>
-        </figure>
+        <div className="figure-container" key={index}>
+          <figure>
+            <img
+              src={item.image}
+              alt={item.level}
+              className={item.level === selectedThValue ? "active" : ""}
+              onClick={() => navigateToHeader(item.level)}
+            />
+            <figcaption>{item.level.toUpperCase()}</figcaption>
+          </figure>
+        </div>
       ))}
     </div>
   );

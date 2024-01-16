@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./UploadBase.css";
 import Alert from "../Alert/Alert";
 import Form from "./Form";
@@ -16,7 +16,6 @@ const UploadForm = () => {
   const [alertShow, setAlertShow] = useState(null);
   const [loading, setLoading] = useState(null);
 
-
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     if (type === "file") {
@@ -29,8 +28,6 @@ const UploadForm = () => {
       };
       if (file) {
         reader.readAsDataURL(file);
-      } else if (file === null) {
-        setImageSrc(null);
       }
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
@@ -46,8 +43,7 @@ const UploadForm = () => {
       Object.entries(formData).forEach(([key, value]) => {
         formDataToSend.append(key, value);
       });
-
-      const response = await fetch("http://localhost:8000/api/layout", {
+      const response = await fetch("https://clashof-base-api.vercel.app/api/layout", {
         method: "POST",
         body: formDataToSend,
       });
@@ -89,7 +85,7 @@ const UploadForm = () => {
   return (
     <div className="form-container">
       <div className="form-title">
-        <h1>Upload Your Bases</h1>
+        <h1>Upload Your Base</h1>
       </div>
       <div className="form-container-section">
         <Form
