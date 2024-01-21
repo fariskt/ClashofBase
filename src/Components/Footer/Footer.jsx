@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "./Footer.css";
 import { AppContext } from "../../context/AppContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Footer = () => {
   const { handleThValueFilter, handleTypeFilter } = useContext(AppContext);
@@ -49,17 +49,13 @@ const Footer = () => {
           </div>
           <div className="footer-bottom">
             <h3>Info</h3>
-            <h4>Layout</h4>
-            <h4>About</h4>
-            <h4>News</h4>
-            <h4>Upload Layout</h4>
+            <Link to="/header">
+              <h4>Layout</h4>
+            </Link>
+            <Link to="/upload">
+              <h4>Upload Layout</h4>
+            </Link>
             <h4>Contact us</h4>
-          </div>
-          <div className="footer-bottom">
-            <h3 className="social-header">Social Media</h3>
-            <h4>Layout</h4>
-            <h4>About</h4>
-            <h4>About</h4>
           </div>
         </div>
         <div className="bottom-section">
