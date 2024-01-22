@@ -59,6 +59,7 @@
     text-align: center;
     color: rgb(148, 144, 144);
 }
+
 @media (max-width:768px){
     .footer{
         padding-bottom: 20px;
