@@ -82,12 +82,12 @@ const Header = () => {
           </div>
           {/* for pc screen */}
           <div className="pc">
-            <Buttons />
+            <Buttons/>
           </div>
           {/* for mobile screen */}
           {show && (
             <div className="mobile">
-              <Buttons />
+              <Buttons setShow={setShow}/>
             </div>
           )}
           {isLoading ? <Loading /> : <FilteredLayout setShow={setShow} />}
