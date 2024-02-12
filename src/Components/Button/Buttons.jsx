@@ -7,24 +7,39 @@ import "./Button.css";
 import { AppContext } from "../../context/AppContext";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 
-
-
 const Buttons = ({ setShow }) => {
-  const { dispatch, handleTypeFilter } = useContext(AppContext);
-
-  const [showTh, setShowTh] = useState(true);
-  const [showBh, setShowBh] = useState(false);
-
-  const handleClick = (isTownhall) => {
-    setShowTh(isTownhall);
-    setShowBh(!isTownhall);
-  };
-  
+  const {
+    dispatch,
+    handleTypeFilter,
+    handleThValueFilter,
+    showTh,
+    showBh,
+    setShowBh,
+    setShowTh,
+  } = useContext(AppContext);
 
   const resetValue = () => {
-    dispatch({ type: "SET_SELECTED_TH_VALUE", payload: "th15" });
-    handleTypeFilter("all");
+    if (showTh) {
+      dispatch({ type: "SET_SELECTED_TH_VALUE", payload: "th15" });
+      handleTypeFilter("all");
+    } else {
+      dispatch({ type: "SET_SELECTED_TH_VALUE", payload: "bh10" });
+      handleTypeFilter("all");
+    }
   };
+
+  const handleClick = (isTownhall) => {
+    setShowBh(!isTownhall);
+    setShowTh(isTownhall);
+    if (isTownhall) {
+      handleThValueFilter("th15");
+      handleTypeFilter("all");
+    } else if (!isTownhall) {
+      handleThValueFilter("bh10");
+      handleTypeFilter("all");
+    }
+  };
+
   return (
     <div className="filter-btn">
       <div className="close">
@@ -41,36 +56,35 @@ const Buttons = ({ setShow }) => {
           className={`th-btn ${showTh ? "btn-active" : ""}`}
           onClick={() => handleClick(true)}
         >
-          Townhalls
+          Townhall
         </button>
         <button
           className={`th-btn ${showBh ? "btn-active" : ""}`}
           onClick={() => handleClick(false)}
         >
-          Builder halls
+          Builderhall
         </button>
       </div>
 
       {showTh && (
-        <div className="th-list">
-          <HallButton />
-        </div>
+        <>
+          <div className="th-list">
+            <HallButton />
+          </div>
+          <div className="type-list">
+            <TypeButton />
+          </div>
+        </>
       )}
       {showBh && (
-        <div className="th-list">
-          <Builderhallbtn />
-        </div>
-      )}
-
-      {showTh && (
-        <div className="type-list">
-          <TypeButton />
-        </div>
-      )}
-      {showBh && (
-        <div className="type-list">
-          <BuilderType />
-        </div>
+        <>
+          <div className="th-list">
+            <Builderhallbtn />
+          </div>
+          <div className="type-list">
+            <BuilderType />
+          </div>
+        </>
       )}
       <div className="reset">
         <h3 className="reset-filter" onClick={resetValue}>

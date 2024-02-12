@@ -58,38 +58,38 @@ export const townhall = [
 ];
 export const builderhall = [
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_10.png",
-    level: "BH 10",
+    id: 1,
+    image: "https://www.clash.ninja/images/entities/65_10.png",
+    level: "bh10",
   },
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_9.png",
-    level: "BH 9",
+    id: 2,
+    image: "https://www.clash.ninja/images/entities/65_9.png",
+    level: "bh9",
   },
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_8.png",
-    level: "BH 8",
+    id: 3,
+    image: "https://www.clash.ninja/images/entities/65_8.png",
+    level: "bh8",
   },
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_7.png",
-    level: "BH 7",
+    id: 4,
+    image: "https://www.clash.ninja/images/entities/65_7.png",
+    level: "bh7",
   },
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_6.png",
-    level: "BH 6",
+    id: 5,
+    image: "https://www.clash.ninja/images/entities/65_6.png",
+    level: "bh6",
   },
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_5.png",
-    level: "BH 5",
+    id: 6,
+    image: "https://www.clash.ninja/images/entities/65_5.png",
+    level: "bh5",
   },
   {
-    image:
-      "https://www.clash.ninja/images/entities/65_4.png",
-    level: "BH 4",
+    id: 7,
+    image: "https://www.clash.ninja/images/entities/65_4.png",
+    level: "bh4",
   },
 ];

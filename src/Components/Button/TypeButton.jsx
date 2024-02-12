@@ -3,7 +3,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { AppContext } from "../../context/AppContext";
 
 const TypeButton = () => {
-  const { handleTypeFilter, selectedType, isActive } = useContext(AppContext);
+  const { handleTypeFilter, selectedType } = useContext(AppContext);
 
   const [show, setShow] = useState(true);
 
@@ -12,7 +12,6 @@ const TypeButton = () => {
   };
 
   const typeItems = ["all", "war", "trophy", "farming", "hybrid", "fun", "anti 3star" , "progress"];
-  let all = typeItems.shift();
 
   return (
     <div className="select-type">
@@ -22,14 +21,6 @@ const TypeButton = () => {
         <hr className={show ? "th-head" : ""} />
       </h3>
       <ul>
-        {show && (
-          <li
-            className={isActive ? "active" : ""}
-            onClick={() => handleTypeFilter("all")}
-          >
-            {all.charAt(0).toUpperCase() + all.slice(1)}
-          </li>
-        )}
         {show &&
           typeItems.map((item, index) => (
             <li

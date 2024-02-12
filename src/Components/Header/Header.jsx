@@ -1,18 +1,38 @@
-import React, { useContext,  useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Header.css";
 import Buttons from "../Button/Buttons";
-import { townhall } from "../../data/data";
+import { builderhall, townhall } from "../../data/data";
 import { AppContext } from "../../context/AppContext";
 import Loading from "../Loading/Loading";
 import FilteredLayout from "./FilteredLayout";
 
 const Header = () => {
-  const { selectedType , selectedThValue, isLoading} = useContext(AppContext);
-  const [show, setShow] = useState(false)
+  const {
+    selectedType,
+    selectedThValue,
+    isLoading,
+    dispatch,
+    handleTypeFilter,
+  } = useContext(AppContext);
+  const [show, setShow] = useState(false);
 
   const thimage = townhall.filter(
     (layout) => layout.level === selectedThValue && layout.image
   );
+  const bhimage = builderhall.filter(
+    (layout) => layout.level === selectedThValue && layout.image
+  );
+
+  useEffect(() => {
+    if (selectedThValue) {
+      handleTypeFilter("all");
+      dispatch({ type: "SET_IS_LOADING", payload: true });
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        dispatch({ type: "SET_IS_LOADING", payload: false });
+      }, 1000);
+    }
+  }, [selectedThValue]);
 
   return (
     <>
@@ -29,7 +49,7 @@ const Header = () => {
                     selectedType.slice(1)}
               </span>{" "}
               {""}
-              Base Links 2023 | COC Layout
+              Base Links 2024 | COC Layout
             </h1>
 
             {isLoading ? (
@@ -38,6 +58,9 @@ const Header = () => {
               <div className="info">
                 <h4>
                   {thimage.map((item, index) => (
+                    <img key={index} src={item.image} alt="townhall-image" />
+                  ))}
+                  {bhimage.map((item, index) => (
                     <img key={index} src={item.image} alt="townhall-image" />
                   ))}
                   {selectedThValue.toUpperCase()}
@@ -54,11 +77,7 @@ const Header = () => {
             )}
 
             <div className="add-filter">
-              <button
-                onClick={() => setShow(true)}
-              >
-                Filters
-              </button>
+              <button onClick={() => setShow(true)}>Filters</button>
             </div>
           </div>
           {/* for pc screen */}
@@ -68,18 +87,10 @@ const Header = () => {
           {/* for mobile screen */}
           {show && (
             <div className="mobile">
-              <Buttons
-                setShow={setShow}
-              />
+              <Buttons />
             </div>
           )}
-          {isLoading ? (
-            <Loading />
-          ) : (
-            <FilteredLayout
-              setShow={setShow}
-            />
-          )}
+          {isLoading ? <Loading /> : <FilteredLayout setShow={setShow} />}
         </div>
       </div>
     </>

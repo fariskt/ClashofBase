@@ -6,14 +6,22 @@ import { AppContext } from "../../context/AppContext";
 import Loading from "../Loading/Loading";
 
 const Townhall = () => {
-  const { selectedThValue, handleThValueFilter, isLoading, handleTypeFilter } =
-    useContext(AppContext);
+  const {
+    selectedThValue,
+    handleThValueFilter,
+    isLoading,
+    handleTypeFilter,
+    setShowTh,
+    setShowBh,
+  } = useContext(AppContext);
 
   const navigate = useNavigate();
 
   const navigateToHeader = (item) => {
     let path = `header`;
     navigate(path);
+    setShowTh(true);
+    setShowBh(false);
     handleThValueFilter(item);
     handleTypeFilter("all");
 

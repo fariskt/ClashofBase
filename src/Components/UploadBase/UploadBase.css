@@ -115,7 +115,7 @@ form p {
 #spinner{
   position: absolute;
   margin-top: -15px;
-  margin-left: -20px;
+  margin-left: -15px;
 }
 
 @media (max-width: 768px) {

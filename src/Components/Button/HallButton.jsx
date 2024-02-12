@@ -1,11 +1,10 @@
-import React, { useContext,  useState } from "react";
+import React, { useContext, useState } from "react";
 import "../Header/Header.css";
 import { IoIosArrowUp } from "react-icons/io";
 import { AppContext } from "../../context/AppContext";
 
 const HallButton = () => {
-  
-  const { state, handleThValueFilter } = useContext(AppContext);
+  const { selectedThValue, handleThValueFilter } = useContext(AppContext);
 
   const [show, setShow] = useState(true);
 
@@ -41,7 +40,7 @@ const HallButton = () => {
           townHallValues.map((item, index) => (
             <li
               key={index}
-              className={item === state.selectedThValue ? "active" : ""}
+              className={item === selectedThValue ? "active" : ""}
               onClick={() => handleThValueFilter(item)}
             >
               {item.toUpperCase()}

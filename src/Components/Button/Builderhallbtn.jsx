@@ -5,7 +5,7 @@ import { AppContext } from "../../context/AppContext";
 
 const HallButton = () => {
   
-  const { state } = useContext(AppContext);
+  const { selectedThValue, handleThValueFilter} = useContext(AppContext);
 
   const [show, setShow] = useState(true);
 
@@ -30,7 +30,8 @@ const HallButton = () => {
           builderhall.map((item, index) => (
             <li
               key={index}
-              className={item === state.selectedThValue ? "active" : ""}
+              className={item === selectedThValue ? "active" : ""}
+              onClick={()=> handleThValueFilter(item)}
             >
               {item.toUpperCase()}
             </li>

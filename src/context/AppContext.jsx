@@ -1,8 +1,8 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 
 export const AppContext = createContext();
 
- const initialState = {
+const initialState = {
   selectedThValue: sessionStorage.getItem("selectedThValue") || "",
   selectedType: sessionStorage.getItem("selectedType") || "",
   filteredLayouts: JSON.parse(
@@ -14,7 +14,7 @@ export const AppContext = createContext();
   isLoading: true,
 };
 
- const reducer = (state, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case "SET_SELECTED_TH_VALUE":
       return { ...state, selectedThValue: action.payload, isActive: false };
@@ -37,7 +37,9 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const [showTh, setShowTh] = useState(true);
+  const [showBh, setShowBh] = useState(false);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,18 +49,15 @@ export const AppProvider = ({ children }) => {
         );
         const base = await response.json();
         dispatch({ type: "SET_BASE", payload: base });
-        setTimeout(()=> {
-          dispatch({ type: "SET_IS_LOADING", payload: false });
-        },3000)
+        dispatch({ type: "SET_IS_LOADING", payload: false });
       } catch (error) {
         console.error("Error fetching data:", error);
         dispatch({ type: "SET_IS_LOADING", payload: false });
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
   useEffect(() => {
     sessionStorage.setItem("selectedThValue", state.selectedThValue);
@@ -73,16 +72,15 @@ export const AppProvider = ({ children }) => {
 
   const handleThValueFilter = (value) => {
     dispatch({ type: "SET_SELECTED_TH_VALUE", payload: value });
-      const result = state.base.filter(
-        (layout) =>
-          layout.category === value && layout.type === state.selectedType
-      );
-      dispatch({ type: "SET_FILTERED_LAYOUTS", payload: result });
-      if (state.selectedType === "all") {
+    const result = state.base.filter(
+      (layout) =>
+        layout.category === value && layout.type === state.selectedType
+    );
+    dispatch({ type: "SET_FILTERED_LAYOUTS", payload: result });
+    if (state.selectedType === "all") {
       handleTypeFilter("all");
     }
   };
-
 
   const handleTypeFilter = (type) => {
     dispatch({ type: "SET_SELECTED_TYPE", payload: type });
@@ -93,8 +91,7 @@ export const AppProvider = ({ children }) => {
           layout.category === state.selectedThValue && layout.type === type
       );
       dispatch({ type: "SET_FILTERED_LAYOUTS", payload: result });
-    }
-    else if (type === "all") {
+    } else if (type === "all") {
       dispatch({ type: "SET_IS_ACTIVE", payload: true });
       const result = state.base.filter(
         (layout) => layout.category === state.selectedThValue && layout.img
@@ -103,21 +100,14 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (state.selectedThValue) {
-      handleTypeFilter("all");
-    }
-    dispatch({ type: "SET_IS_LOADING", payload: true });
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      dispatch({ type: "SET_IS_LOADING", payload: false });
-    }, 1000);
-  }, [state.selectedThValue]);
-
   const contextValue = {
     ...state,
     handleThValueFilter,
     handleTypeFilter,
+    setShowBh,
+    setShowTh,
+    showBh,
+    showTh,
   };
 
   return (
