@@ -47,7 +47,9 @@ export const AppProvider = ({ children }) => {
         );
         const base = await response.json();
         dispatch({ type: "SET_BASE", payload: base });
-        dispatch({ type: "SET_IS_LOADING", payload: false });
+        setTimeout(()=> {
+          dispatch({ type: "SET_IS_LOADING", payload: false });
+        },3000)
       } catch (error) {
         console.error("Error fetching data:", error);
         dispatch({ type: "SET_IS_LOADING", payload: false });
