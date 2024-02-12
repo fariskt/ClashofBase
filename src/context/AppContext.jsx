@@ -1,103 +1,127 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 export const AppContext = createContext();
 
-const filterFromLocal = JSON.parse(
-  sessionStorage.getItem("filteredLayouts") || "[]"
-);
-const baseFromLocal = JSON.parse(sessionStorage.getItem("base") || "[]");
-const thfromLocal = sessionStorage.getItem("selectedThValue") || "";
-const typeFromLocal = sessionStorage.getItem("selectedType") || "";
-const clickedIndexFromLocal = sessionStorage.getItem("clickedIndex") || "";
+ const initialState = {
+  selectedThValue: sessionStorage.getItem("selectedThValue") || "",
+  selectedType: sessionStorage.getItem("selectedType") || "",
+  filteredLayouts: JSON.parse(
+    sessionStorage.getItem("filteredLayouts") || "[]"
+  ),
+  base: JSON.parse(sessionStorage.getItem("base") || "[]"),
+  isActive: false,
+  clickedIndex: sessionStorage.getItem("clickedIndex") || "",
+  isLoading: true,
+};
+
+ const reducer = (state, action) => {
+  switch (action.type) {
+    case "SET_SELECTED_TH_VALUE":
+      return { ...state, selectedThValue: action.payload, isActive: false };
+    case "SET_SELECTED_TYPE":
+      return { ...state, selectedType: action.payload };
+    case "SET_FILTERED_LAYOUTS":
+      return { ...state, filteredLayouts: action.payload };
+    case "SET_BASE":
+      return { ...state, base: action.payload };
+    case "SET_IS_ACTIVE":
+      return { ...state, isActive: action.payload };
+    case "SET_CLICKED_INDEX":
+      return { ...state, clickedIndex: action.payload };
+    case "SET_IS_LOADING":
+      return { ...state, isLoading: action.payload };
+    default:
+      return state;
+  }
+};
 
 export const AppProvider = ({ children }) => {
-  const [selectedThValue, setSelectedThValue] = useState(thfromLocal);
-  const [selectedType, setSelectedType] = useState(typeFromLocal);
-  const [filteredLayouts, setFilteredLayouts] = useState(filterFromLocal);
-  const [base, setBase] = useState(baseFromLocal);
-  const [isActive, setIsActive] = useState(false);
-  const [clickedIndex, setClickedIndex] = useState(clickedIndexFromLocal);
-  const [isLoading, setIsLoading] = useState(true);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://clashof-base-api.vercel.app/api/layout");
+        dispatch({ type: "SET_IS_LOADING", payload: true });
+        const response = await fetch(
+          "https://clashof-base-api.vercel.app/api/layout"
+        );
         const base = await response.json();
-        setBase(base);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 2000);
+        dispatch({ type: "SET_BASE", payload: base });
+        dispatch({ type: "SET_IS_LOADING", payload: false });
       } catch (error) {
         console.error("Error fetching data:", error);
+        dispatch({ type: "SET_IS_LOADING", payload: false });
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   useEffect(() => {
-    sessionStorage.setItem("selectedThValue", selectedThValue);
-    sessionStorage.setItem("selectedType", selectedType);
-    sessionStorage.setItem("filteredLayouts", JSON.stringify(filteredLayouts));
-    sessionStorage.setItem("base", JSON.stringify(base));
-    sessionStorage.setItem("clickedIndex", clickedIndex);
-  }, [selectedThValue, selectedType, clickedIndex]);
+    sessionStorage.setItem("selectedThValue", state.selectedThValue);
+    sessionStorage.setItem("selectedType", state.selectedType);
+    sessionStorage.setItem(
+      "filteredLayouts",
+      JSON.stringify(state.filteredLayouts)
+    );
+    sessionStorage.setItem("base", JSON.stringify(state.base));
+    sessionStorage.setItem("clickedIndex", state.clickedIndex);
+  }, [state.selectedThValue, state.selectedType, state.clickedIndex]);
 
   const handleThValueFilter = (value) => {
-    setIsActive(false);
-    setSelectedThValue(value);
-    const result = base.filter(
-      (layout) => layout.category === value && layout.type === selectedType
+    dispatch({ type: "SET_SELECTED_TH_VALUE", payload: value });
+      const result = state.base.filter(
+        (layout) =>
+          layout.category === value && layout.type === state.selectedType
       );
-      const newFiltered = [...result];
-      setFilteredLayouts(newFiltered);
-      if(selectedType === "all"){
-        handleTypeFilter("all")  
-      }
+      dispatch({ type: "SET_FILTERED_LAYOUTS", payload: result });
+      if (state.selectedType === "all") {
+      handleTypeFilter("all");
+    }
   };
+
 
   const handleTypeFilter = (type) => {
-    setSelectedType(type);
+    dispatch({ type: "SET_SELECTED_TYPE", payload: type });
     if (type !== "all") {
-      setIsActive(false);
-      const result = base.filter(
-        (layout) => layout.category === selectedThValue && layout.type === type
+      dispatch({ type: "SET_IS_ACTIVE", payload: false });
+      const result = state.base.filter(
+        (layout) =>
+          layout.category === state.selectedThValue && layout.type === type
       );
-      const newFiltered = [...result];
-      setFilteredLayouts(newFiltered);
+      dispatch({ type: "SET_FILTERED_LAYOUTS", payload: result });
     }
-    if (type === "all") {
-      setIsActive(true);
-      const result = base.filter(
-        (layout) => layout.category === selectedThValue && layout.img
+    else if (type === "all") {
+      dispatch({ type: "SET_IS_ACTIVE", payload: true });
+      const result = state.base.filter(
+        (layout) => layout.category === state.selectedThValue && layout.img
       );
-      const newFiltered = [...result];
-      setFilteredLayouts(newFiltered);
+      dispatch({ type: "SET_FILTERED_LAYOUTS", payload: result });
     }
   };
 
+  useEffect(() => {
+    if (state.selectedThValue) {
+      handleTypeFilter("all");
+    }
+    dispatch({ type: "SET_IS_LOADING", payload: true });
+    window.scrollTo(0, 0);
+    setTimeout(() => {
+      dispatch({ type: "SET_IS_LOADING", payload: false });
+    }, 1000);
+  }, [state.selectedThValue]);
 
   const contextValue = {
-    selectedThValue,
-    setSelectedThValue,
-    filteredLayouts,
-    setFilteredLayouts,
-    selectedType,
-    setSelectedType,
-    isActive,
-    setIsActive,
-    clickedIndex,
-    setClickedIndex,
+    ...state,
     handleThValueFilter,
     handleTypeFilter,
-    base,
-    isLoading,
-    setIsLoading
   };
 
   return (
-    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ state, dispatch, ...contextValue }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 export default AppProvider;

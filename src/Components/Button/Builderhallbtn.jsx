@@ -5,7 +5,7 @@ import { AppContext } from "../../context/AppContext";
 
 const HallButton = () => {
   
-  const { state, handleThValueFilter } = useContext(AppContext);
+  const { state } = useContext(AppContext);
 
   const [show, setShow] = useState(true);
 
@@ -13,36 +13,24 @@ const HallButton = () => {
     setShow(!show);
   };
 
-  const townHallValues = [
-    "th16",
-    "th15",
-    "th14",
-    "th13",
-    "th12",
-    "th11",
-    "th10",
-    "th9",
-    "th8",
-    "th7",
-    "th6",
-    "th5",
+  const builderhall = [
+   "bh10","bh9","bh8","bh7","bh6","bh5"
   ];
 
   return (
     <div className="select-th">
       <h3 onClick={handleSelect}>
-        Select Townhall level
+        Select Builderhall level
         <IoIosArrowUp className={show ? "arrow-active" : "arrow"} />
         <hr className={show ? "th-head" : ""} />
       </h3>
 
       <ul>
         {show &&
-          townHallValues.map((item, index) => (
+          builderhall.map((item, index) => (
             <li
               key={index}
               className={item === state.selectedThValue ? "active" : ""}
-              onClick={() => handleThValueFilter(item)}
             >
               {item.toUpperCase()}
             </li>

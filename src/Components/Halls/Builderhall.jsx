@@ -6,10 +6,15 @@ const Builderhall = () => {
   return (
     <div className="img-container">
       {builderhall.map((item, index) => (
-        <figure key={index}>
-          <img src={item.image} alt="" />
-          <figcaption>{item.level.toUpperCase()}</figcaption>
-        </figure>
+        <div className="figure-container" key={index}>
+          <figure>
+            <img
+              src={item.image}
+              alt={item.level}
+            />
+            <figcaption>{item.level.toUpperCase()}</figcaption>
+          </figure>
+        </div>
       ))}
     </div>
   );

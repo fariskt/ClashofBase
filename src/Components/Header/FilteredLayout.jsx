@@ -1,21 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
-import { AppContext } from "../../context/AppContext";
+import { AppContext} from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { IoCartOutline } from "react-icons/io5";
 
 const FilteredLayout = ({ setShow }) => {
-  const { filteredLayouts, setClickedIndex } = useContext(AppContext);
+  const {filteredLayouts , dispatch , selectedThValue} = useContext(AppContext)
   const { addToCart } = useContext(CartContext);
   const [selectedElements, setSelectedElements] = useState([]);
   const [active, setIsActive] = useState(null);
+  
   const navigate = useNavigate();
-
   const handleBaseClick = (index) => {
     let path = `layout`;
     navigate(path);
-    setClickedIndex(index);
+    dispatch({type: "SET_CLICKED_INDEX" , payload: index})
   };
+
 
   let data = [
     "#war",
@@ -47,7 +48,7 @@ const FilteredLayout = ({ setShow }) => {
             title="Add to cart"
           >
             <span
-              onClick={() => setIsActive(layout)}
+              onClick={()=> setIsActive(layout)}
               className={`add-cart ${active == layout && "clicked"}`}
             >
               <IoCartOutline />

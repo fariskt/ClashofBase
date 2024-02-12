@@ -56,41 +56,40 @@ export const townhall = [
     level: "th6",
   },
 ];
-
 export const builderhall = [
   {
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1zHCYi--OYTMB2bJATbdTx5zh3g-lh0Zuse3dbqIw7yQV3HmcpK7hObHbXRxuarMNaEY&usqp=CAU",
+      "https://www.clash.ninja/images/entities/65_10.png",
     level: "BH 10",
   },
   {
     image:
-      "https://www.newforestsafari.com/wp-content/uploads/2022/02/Builder-Hall-9-Max-Levels-list.jpg",
+      "https://www.clash.ninja/images/entities/65_9.png",
     level: "BH 9",
   },
   {
     image:
-      "https://www.newforestsafari.com/wp-content/uploads/2022/02/Builder-hall-8-max-levels-list.jpg",
+      "https://www.clash.ninja/images/entities/65_8.png",
     level: "BH 8",
   },
   {
     image:
-      "https://www.newforestsafari.com/wp-content/uploads/2022/02/Builder-Hall-7-max-levels-list.jpg",
+      "https://www.clash.ninja/images/entities/65_7.png",
     level: "BH 7",
   },
   {
     image:
-      "https://www.newforestsafari.com/wp-content/uploads/2022/02/Builder-Hall-6-Max-levels.jpg",
+      "https://www.clash.ninja/images/entities/65_6.png",
     level: "BH 6",
   },
   {
     image:
-      "https://www.newforestsafari.com/wp-content/uploads/2022/02/Builder-hall-5-max-levels.jpg",
+      "https://www.clash.ninja/images/entities/65_5.png",
     level: "BH 5",
   },
   {
     image:
-      "https://www.newforestsafari.com/wp-content/uploads/2022/02/Builder-Hall-4-Max-Levels-list.jpg",
+      "https://www.clash.ninja/images/entities/65_4.png",
     level: "BH 4",
   },
 ];

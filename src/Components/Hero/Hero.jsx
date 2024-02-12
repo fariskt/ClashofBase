@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Hero.css";
 import Townhall from "../Halls/Townhall";
 import Builderhall from "../Halls/Builderhall";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
+import Loading from "../Loading/Loading";
 
 const Hero = () => {
+  const { isLoading } = useContext(AppContext);
   const [showTh, setShowTh] = useState(true);
   const [showBh, setShowBh] = useState(false);
 
@@ -14,48 +17,55 @@ const Hero = () => {
   };
 
   return (
-    <div className="hero-container">
-      <div className="hero">
-        <img
-          src="https://pbs.twimg.com/media/FRq8QWsXsAM-WfD.jpg:large"
-          alt=""
-        />
-        <div className="header">
-          <h1>ClashSpace</h1>
-          <p>
-            Copy Bases: Instantly copy the latest Clash of Clan Base Links with
-            just a few taps. Upload your own Layout for free within few seconds{" "}
-            <Link
-              to={"/upload"}
-              style={{
-                color: "blueviolet",
-                textDecoration: "underline",
-              }}
+    <>
+      {isLoading && <Loading />}
+      <div className="hero-container">
+        <div className="hero">
+          <img
+            src="https://pbs.twimg.com/media/FRq8QWsXsAM-WfD.jpg:large"
+            alt=""
+          />
+
+          <div className="header">
+            <h1>ClashSpace</h1>
+            <p>
+              Copy Bases: Instantly copy the latest Clash of Clan Base Links
+              with just a few taps. Upload your own Layout for free within few
+              seconds{" "}
+              <Link
+                to={"/upload"}
+                style={{
+                  color: "blueviolet",
+                  textDecoration: "underline",
+                }}
+              >
+                click here
+              </Link>
+            </p>
+          </div>
+
+          <div className="villages">
+            <button
+              className={`btn ${showTh ? "active" : ""}`}
+              onClick={() => handleClick(true)}
             >
-              click here
-            </Link>
-          </p>
-        </div>
-        <div className="villages">
-          <button
-            className={`btn ${showTh ? "active" : ""}`}
-            onClick={() => handleClick(true)}
-          >
-            Townhalls
-          </button>
-          <button
-            className={`btn ${showBh ? "active" : ""}`}
-            onClick={() => handleClick(false)}
-          >
-            Builder halls
-          </button>
-        </div>
-        <div className="lists">
-          {showTh && <Townhall />}
-          {showBh && <Builderhall />}
+              Townhalls
+            </button>
+            <button
+              className={`btn ${showBh ? "active" : ""}`}
+              onClick={() => handleClick(false)}
+            >
+              Builder halls
+            </button>
+          </div>
+
+          <div className="lists">
+            {showTh && <Townhall />}
+            {showBh && <Builderhall />}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

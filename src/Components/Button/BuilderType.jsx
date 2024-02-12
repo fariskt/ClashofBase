@@ -1,9 +1,9 @@
-import React, { useContext, useReducer, useState } from "react";
+import React, { useContext , useState } from "react";
 import { IoIosArrowUp } from "react-icons/io";
 import { AppContext } from "../../context/AppContext";
 
 const TypeButton = () => {
-  const { handleTypeFilter, selectedType, isActive } = useContext(AppContext);
+  const { selectedType, isActive } = useContext(AppContext);
 
   const [show, setShow] = useState(true);
 
@@ -11,7 +11,7 @@ const TypeButton = () => {
     setShow(!show);
   };
 
-  const typeItems = ["all", "war", "trophy", "farming", "hybrid", "fun", "anti 3star" , "progress"];
+  const typeItems = ["all", "trophy", "farming", "hybrid", "fun" , "progress"];
   let all = typeItems.shift();
 
   return (
@@ -25,7 +25,6 @@ const TypeButton = () => {
         {show && (
           <li
             className={isActive ? "active" : ""}
-            onClick={() => handleTypeFilter("all")}
           >
             {all.charAt(0).toUpperCase() + all.slice(1)}
           </li>
@@ -35,7 +34,6 @@ const TypeButton = () => {
             <li
               key={index}
               className={item === selectedType ? "active" : ""}
-              onClick={() => handleTypeFilter(item)}
             >
               {item.charAt(0).toUpperCase() + item.slice(1)}
             </li>

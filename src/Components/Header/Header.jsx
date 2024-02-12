@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext,  useState } from "react";
 import "./Header.css";
 import Buttons from "../Button/Buttons";
 import { townhall } from "../../data/data";
@@ -7,30 +7,12 @@ import Loading from "../Loading/Loading";
 import FilteredLayout from "./FilteredLayout";
 
 const Header = () => {
-  const [show, setShow] = useState(false);
-  const {
-    selectedThValue,
-    selectedType,
-    isLoading,
-    handleTypeFilter,
-    setIsLoading,
-  } = useContext(AppContext);
+  const { selectedType , selectedThValue, isLoading} = useContext(AppContext);
+  const [show, setShow] = useState(false)
 
   const thimage = townhall.filter(
-    (layout) => layout.level == selectedThValue && layout.image
+    (layout) => layout.level === selectedThValue && layout.image
   );
-
-  useEffect(() => {
-    if (selectedThValue) {
-      handleTypeFilter("all");
-    }
-    setIsLoading(true);
-    window.scrollTo(0, 0);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, [selectedThValue]);
-
 
   return (
     <>
@@ -72,18 +54,32 @@ const Header = () => {
             )}
 
             <div className="add-filter">
-              <button onClick={() => setShow(true)}>Filters</button>
+              <button
+                onClick={() => setShow(true)}
+              >
+                Filters
+              </button>
             </div>
           </div>
+          {/* for pc screen */}
           <div className="pc">
             <Buttons />
           </div>
+          {/* for mobile screen */}
           {show && (
             <div className="mobile">
-              <Buttons setShow={setShow} />
+              <Buttons
+                setShow={setShow}
+              />
             </div>
           )}
-          {isLoading ? <Loading /> : <FilteredLayout setShow={setShow} />}
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <FilteredLayout
+              setShow={setShow}
+            />
+          )}
         </div>
       </div>
     </>

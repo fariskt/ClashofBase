@@ -122,7 +122,6 @@
 .info h5{
   width: 140px;
   height: 40px;
-
   font-weight: 500;
   font-size: 0.9rem;
   background-color: rgb(155, 185, 212);
@@ -133,9 +132,6 @@
 .add-filter{
   display: none;
 }
-
-
-
  .mobile{
   display: none;
  }
@@ -154,6 +150,7 @@
     height: auto;
     background-color: #f8f5f5;
     padding: 0;
+    padding-bottom: 4rem;
   }
   .add-filter{
     display: block;

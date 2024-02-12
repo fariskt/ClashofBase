@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "../Hero/Hero.css";
 import { townhall } from "../../data/data";
 import { useNavigate } from "react-router-dom";
@@ -6,12 +6,8 @@ import { AppContext } from "../../context/AppContext";
 import Loading from "../Loading/Loading";
 
 const Townhall = () => {
-  const {
-    selectedThValue,
-    handleThValueFilter,
-    isLoading,
-    handleTypeFilter,
-  } = useContext(AppContext);
+  const { selectedThValue, handleThValueFilter, isLoading, handleTypeFilter } =
+    useContext(AppContext);
 
   const navigate = useNavigate();
 
@@ -25,7 +21,6 @@ const Townhall = () => {
       return <Loading />;
     }
   };
-
 
   return (
     <div className="img-container">

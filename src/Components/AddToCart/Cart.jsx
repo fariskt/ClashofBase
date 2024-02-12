@@ -4,15 +4,15 @@ import { CartContext } from "../../context/CartContext";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 function AddToCart() {
-  const { cartItems, removeFromCart, clearCart } = useContext(CartContext);
+  const { cartItem , removeFromCart , clearCart} = useContext(CartContext);
 
   return (
     <div className="cart-container">
-      {cartItems.length > 0 ? (
+      {cartItem.length > 0 ? (
         <>
           <h1 style={{ textAlign: "center", paddingTop: "20px" }}>Cart</h1>
           <div className="container-section">
-            {cartItems.map((item, index) => (
+            {cartItem.map((item, index) => (
               <div className="cart-items" key={index}>
                 <div className="cart-image-container">
                  <img src={item.img} alt="" />
@@ -25,10 +25,10 @@ function AddToCart() {
                       <button className="copy-btn">Copy Base</button>
                     </a>
                   <button
-                    onClick={() => removeFromCart(item)}
+                    onClick={()=> removeFromCart(item)}
                     className="delete-btn"
                     title="remove from cart"
-                  >
+                  > 
                     <RiDeleteBin6Line/>
                   </button>
                   </div>

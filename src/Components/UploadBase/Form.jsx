@@ -47,6 +47,7 @@ const Form = ({
             <option value="th8">Townhall 8</option>
             <option value="th7">Townhall 7</option>
             <option value="th6">Townhall 6</option>
+            <option value="th5">Townhall 5</option>
           </select>
 
           <p className="select-p">Select Type</p>
@@ -63,6 +64,8 @@ const Form = ({
             <option value="farming">Farming </option>
             <option value="fun"> Funny</option>
             <option value="hybrid">Hybrid</option>
+            <option value="progress">Progress</option>
+            <option value="anti 3 star">Anti 3 Star</option>
           </select>
           <p>Upload Base Image </p>
           {imageSrc && (
