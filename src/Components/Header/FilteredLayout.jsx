@@ -5,7 +5,7 @@ import { CartContext } from "../../context/CartContext";
 import { IoCartOutline } from "react-icons/io5";
 
 const FilteredLayout = ({ setShow }) => {
-  const {filteredLayouts , dispatch , selectedThValue} = useContext(AppContext)
+  const {filteredLayouts , dispatch } = useContext(AppContext)
   const { addToCart } = useContext(CartContext);
   const [selectedElements, setSelectedElements] = useState([]);
   const [active, setIsActive] = useState(null);

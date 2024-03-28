@@ -1,30 +1,31 @@
 .loader-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.5);
-    height: 100vh;
-    width: 100vw;
-    top: 65px;
-    left: 0;
-    z-index: 1;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.5);
+  height: 97%;
+  width: 100%;
+  top: 65px;
+  left: 0;
+  z-index: 1;
 }
 
 .spinner {
-    width: 64px;
-    height: 64px;
-    border: 8px solid;
-    border-color: #3d5af1 transparent #3d5af1 transparent;
-    border-radius: 50%;
-    animation: spin-anim 1.2s linear infinite;
+  position: sticky;
+  top: 50%;
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #3d5af1 transparent #3d5af1 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
 }
 
 @keyframes spin-anim {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

@@ -18,7 +18,7 @@ const Hero = () => {
 
   return (
     <>
-      {isLoading && <Loading />}
+      {isLoading  && <Loading />}
       <div className="hero-container">
         <div className="hero">
           <img
