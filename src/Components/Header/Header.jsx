@@ -30,7 +30,7 @@ const Header = () => {
       window.scrollTo(0, 0);
       setTimeout(() => {
         dispatch({ type: "SET_IS_LOADING", payload: false });
-      }, 1000);
+      }, 700);
     }
   }, [selectedThValue]);
 

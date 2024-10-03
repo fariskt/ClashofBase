@@ -6,8 +6,6 @@ function Loading() {
       <div className="loader-container">
         <div className="spinner"></div>
       </div>
-
-      <h3 className="loading-details">Please wait...</h3>
     </>
   );
 }
