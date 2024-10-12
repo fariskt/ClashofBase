@@ -1,8 +1,5 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This webpage is designed for Clash of Clans players to easily copy and share their own base layouts. Players can:
+H
+Whether you're looking to showcase your base design or find inspiration from others, this site helps streamline the process of sharing layouts with the Clash of Clans community.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
